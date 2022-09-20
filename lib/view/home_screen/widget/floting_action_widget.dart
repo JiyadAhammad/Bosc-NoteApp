@@ -38,7 +38,7 @@ class FlotingActionWidget extends StatelessWidget {
                           prefixIcon: Icons.content_copy,
                           hintText: 'Content',
                           controller: contentController,
-                          maxline: 5,
+                          maxline: 3,
                         ),
                         kheight20,
                         ElevatedButton.icon(
@@ -70,38 +70,10 @@ class FlotingActionWidget extends StatelessWidget {
   }
 
   void onSubmitClicked() {
-    title.add(titleController.text);
-    content.add(contentController.text);
-    if (titleController.text.isEmpty || contentController.text.isEmpty) {
-      Get.snackbar(
-        'Error',
-        'All Field are Required',
-        titleText: const Center(
-          child: Text(
-            'Error',
-            style: TextStyle(
-              fontSize: 20,
-              color: kred,
-            ),
-          ),
-        ),
-        messageText: const Center(
-          child: Text(
-            'All Field are Required',
-            style: TextStyle(
-              fontSize: 18,
-              color: kwhite,
-            ),
-          ),
-        ),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: kblack,
-        colorText: kwhite,
-        maxWidth: 250,
-        margin: const EdgeInsets.only(bottom: 15),
-      );
-    } else {
+    if (titleController.text.isNotEmpty && contentController.text.isNotEmpty) {
       // index++;
+      title.add(titleController.text);
+      content.add(contentController.text);
       Get.offAll(() => const HomeScreen());
       Get.snackbar(
         'title',
@@ -130,8 +102,36 @@ class FlotingActionWidget extends StatelessWidget {
         maxWidth: 250,
         margin: const EdgeInsets.only(bottom: 15),
       );
+      titleController.clear();
+      contentController.clear();
+    } else {
+      Get.snackbar(
+        'Error',
+        'All Field are Required',
+        titleText: const Center(
+          child: Text(
+            'Error',
+            style: TextStyle(
+              fontSize: 20,
+              color: kred,
+            ),
+          ),
+        ),
+        messageText: const Center(
+          child: Text(
+            'All Field are Required',
+            style: TextStyle(
+              fontSize: 18,
+              color: kwhite,
+            ),
+          ),
+        ),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: kblack,
+        colorText: kwhite,
+        maxWidth: 250,
+        margin: const EdgeInsets.only(bottom: 15),
+      );
     }
-    titleController.clear();
-    contentController.clear();
   }
 }

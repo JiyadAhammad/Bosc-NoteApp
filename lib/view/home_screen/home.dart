@@ -105,6 +105,7 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     title[index].toUpperCase(),
+                                    overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       fontSize: 20,
                                       color: kblack,
@@ -116,11 +117,14 @@ class HomeScreen extends StatelessWidget {
                                     color: kblack,
                                   ),
                                   Expanded(
-                                    child: Text(
-                                      content[index],
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: kblue,
+                                    child: SizedBox(
+                                      child: Text(
+                                        content[index],
+                                        // overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: kblue,
+                                        ),
                                       ),
                                     ),
                                   ),
