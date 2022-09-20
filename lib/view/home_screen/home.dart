@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:noteapp/model/constant/color/colors.dart';
+import 'package:noteapp/model/constant/size/size.dart';
+import 'package:noteapp/view/home_screen/widget/floting_action_widget.dart';
+import 'package:noteapp/view/home_screen/widget/form_feild.dart';
+
+final titleController = TextEditingController();
+final contentController = TextEditingController();
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,6 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kwhite,
       body: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, value) {
@@ -46,9 +54,12 @@ class HomeScreen extends StatelessWidget {
           ];
         },
         body: GridView.builder(
+          padding: const EdgeInsets.all(10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
             crossAxisCount: 2,
-            childAspectRatio: 4 / 4,
+            childAspectRatio: 4 / 3,
           ),
           itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
@@ -62,16 +73,44 @@ class HomeScreen extends StatelessWidget {
                 ),
                 color: Colors.transparent,
               ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'data',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Divider(
+                      thickness: 2,
+                      color: kblack,
+                    ),
+                    Expanded(
+                      child: Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.add,
-          size: 35,
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
         ),
+        child: const FlotingActionWidget(),
       ),
     );
   }
