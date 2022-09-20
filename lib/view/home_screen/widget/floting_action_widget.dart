@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:noteapp/model/constant/color/colors.dart';
 import 'package:noteapp/model/constant/size/size.dart';
 import 'package:noteapp/view/home_screen/home.dart';
 import 'package:noteapp/view/home_screen/widget/form_feild.dart';
@@ -41,9 +42,12 @@ class FlotingActionWidget extends StatelessWidget {
                         ),
                         kheight20,
                         ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: const Icon(Icons.done),
-                            label: const Text('Submit'))
+                          onPressed: () {
+                            onSubmitClicked();
+                          },
+                          icon: const Icon(Icons.done),
+                          label: const Text('Submit'),
+                        ),
                       ],
                     ),
                   ),
@@ -63,5 +67,71 @@ class FlotingActionWidget extends StatelessWidget {
         size: 40,
       ),
     );
+  }
+
+  void onSubmitClicked() {
+    title.add(titleController.text);
+    content.add(contentController.text);
+    if (titleController.text.isEmpty || contentController.text.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'All Field are Required',
+        titleText: const Center(
+          child: Text(
+            'Error',
+            style: TextStyle(
+              fontSize: 20,
+              color: kred,
+            ),
+          ),
+        ),
+        messageText: const Center(
+          child: Text(
+            'All Field are Required',
+            style: TextStyle(
+              fontSize: 18,
+              color: kwhite,
+            ),
+          ),
+        ),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: kblack,
+        colorText: kwhite,
+        maxWidth: 250,
+        margin: const EdgeInsets.only(bottom: 15),
+      );
+    } else {
+      // index++;
+      Get.offAll(() => const HomeScreen());
+      Get.snackbar(
+        'title',
+        'message',
+        titleText: const Center(
+          child: Text(
+            'Success',
+            style: TextStyle(
+              fontSize: 20,
+              color: kgreen,
+            ),
+          ),
+        ),
+        messageText: const Center(
+          child: Text(
+            'Successfully Added',
+            style: TextStyle(
+              fontSize: 18,
+              color: kwhite,
+            ),
+          ),
+        ),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: kblack,
+        colorText: kwhite,
+        maxWidth: 250,
+        margin: const EdgeInsets.only(bottom: 15),
+      );
+    }
+    titleController.clear();
+    contentController.clear();
   }
 }

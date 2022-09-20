@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:noteapp/model/constant/color/colors.dart';
 import 'package:noteapp/view/home_screen/home.dart';
@@ -61,22 +62,9 @@ class _SplashScreenState extends State<SplashScreen> {
             height: height,
             color: Colors.white,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              Center(
-                child: Text(
-                  'BROTOTYPE',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 35,
-                    color: kblack,
-                  ),
-                ),
-              ),
-              // Lottie.asset('asset/lottie/student.json'),
-            ],
-          )
+          Center(
+            child: Image.asset('asset/image/bosc.png'),
+          ),
         ],
       ),
     );

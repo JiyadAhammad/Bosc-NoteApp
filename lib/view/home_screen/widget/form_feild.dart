@@ -25,26 +25,16 @@ class TextFormWidget extends StatelessWidget {
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
-      // textAlign: TextAlign.center,
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon),
-        // hintText: hintText,
         label: Text(hintText),
-
-        // errorText: 'Invalid',
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
         ),
       ),
-      // validator: validator,
       inputFormatters: inputFormatters,
-      validator: (value) {
-        if (value == null) {
-          return 'Field Cannot be Empty';
-        }
-      },
     );
   }
 }
